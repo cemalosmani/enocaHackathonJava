@@ -35,9 +35,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     try {
       String jwt = parseJwt(request);
       if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-        String username = jwtUtils.getUserNameFromJwtToken(jwt);
+        String email = jwtUtils.getUserNameFromJwtToken(jwt);
 
-        UserDetails userDetails = customerDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = customerDetailsService.loadUserByUsername(email);
         UsernamePasswordAuthenticationToken authentication =
             new UsernamePasswordAuthenticationToken(
                 userDetails,
@@ -48,7 +48,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     } catch (Exception e) {
-      logger.error("Cannot set user authentication: {}", e);
+      logger.error("Cannot set customer authentication: {}", e);
     }
 
     filterChain.doFilter(request, response);

@@ -2,8 +2,13 @@ package com.dejkoveci.enocaHackathonJava.model;
 
 import java.util.HashSet;
 
+
 import java.util.List;
 import java.util.Set;
+
+import jakarta.validation.constraints.Email;
+
+import jakarta.validation.constraints.NotBlank;
 
 import jakarta.persistence.UniqueConstraint;
 
@@ -26,13 +31,17 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank
   @Size(max = 20)
   private String username;
 	
-  @Column(name = "email")
+  @NotBlank
+  @Size(max = 50)
+  @Email
   private String email;
 
-  @Column(name = "password")
+  @NotBlank
+  @Size(max = 120)
   private String password;
 
   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)

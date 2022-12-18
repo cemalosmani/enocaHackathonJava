@@ -98,7 +98,7 @@ public class CustomerDetailsImpl implements UserDetails {
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
-    CustomerDetailsImpl user = (CustomerDetailsImpl) o;
-    return Objects.equals(id, user.id);
+    CustomerDetailsImpl customerDetailsImpl = (CustomerDetailsImpl) o;
+    return Objects.equals(id, customerDetailsImpl.id);
   }
 }

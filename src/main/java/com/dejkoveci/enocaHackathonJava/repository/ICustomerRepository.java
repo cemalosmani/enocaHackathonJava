@@ -14,4 +14,6 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
   Boolean existsByUsername(String username);
 
   Boolean existsByEmail(String email);
+  
+  
 }

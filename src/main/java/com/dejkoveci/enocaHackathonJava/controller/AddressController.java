@@ -21,8 +21,14 @@ import com.dejkoveci.enocaHackathonJava.repository.IAddressRepository;
 @RequestMapping("/api")
 public class AddressController {
 	
+	private IAddressRepository iAddressRepository;
+	
 	@Autowired
-	IAddressRepository iAddressRepository;
+	public AddressController() {
+		
+		this.iAddressRepository = iAddressRepository;
+		
+	}
 	
 	//Get operation
 	

@@ -13,9 +13,13 @@ import com.dejkoveci.enocaHackathonJava.repository.ICustomerRepository;
 
 @Service
 public class CustomerDetailsServiceImpl implements UserDetailsService {
-	
+  
+  private ICustomerRepository iCustomerRepository;
+  
   @Autowired
-  ICustomerRepository iCustomerRepository;
+  public CustomerDetailsServiceImpl(ICustomerRepository iCustomerRepository) {
+	this.iCustomerRepository = iCustomerRepository;
+  }
 
   @Override
   @Transactional

@@ -26,11 +26,15 @@ import com.dejkoveci.enocaHackathonJava.security.services.CustomerDetailsService
         prePostEnabled = true)
 public class WebSecurityConfig {
 	
-  @Autowired
-  CustomerDetailsServiceImpl customerDetailsService;
+  private CustomerDetailsServiceImpl customerDetailsService;
 
-  @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
+  
+  @Autowired
+  public WebSecurityConfig(CustomerDetailsServiceImpl customerDetailsService, AuthEntryPointJwt unauthorizedHandler) {
+	  this.customerDetailsService = customerDetailsService;
+	  this.unauthorizedHandler = unauthorizedHandler;
+  }
 
   @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() {

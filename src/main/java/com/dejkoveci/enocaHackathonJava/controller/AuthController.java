@@ -39,17 +39,25 @@ import com.dejkoveci.enocaHackathonJava.security.services.CustomerDetailsImpl;
 @RequestMapping("/api/auth")
 public class AuthController {
 	
-  @Autowired
   AuthenticationManager authenticationManager;
 
-  @Autowired
   ICustomerRepository iCustomerRepository;
 
-  @Autowired
   IRoleRepository iRoleRepository;
-
-  @Autowired
+  
   PasswordEncoder encoder;
+  
+  @Autowired
+  public AuthController(AuthenticationManager authenticationManager,
+						ICustomerRepository iCustomerRepository,
+						IRoleRepository iRoleRepository, 
+						PasswordEncoder encoder) {
+	  this.authenticationManager = authenticationManager;
+	  this.iCustomerRepository = iCustomerRepository;
+	  this.iRoleRepository = iRoleRepository;
+	  this.encoder = encoder;
+	  
+  }
 
   @Autowired
   JwtUtils jwtUtils;

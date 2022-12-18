@@ -22,11 +22,20 @@ import com.dejkoveci.enocaHackathonJava.security.services.CustomerDetailsService
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 	
-  @Autowired
   private JwtUtils jwtUtils;
 
-  @Autowired
   private CustomerDetailsServiceImpl customerDetailsService;
+  
+  @Autowired
+  public AuthTokenFilter(JwtUtils jwtUtils,
+  CustomerDetailsServiceImpl customerDetailsService) {
+	  
+	  this.jwtUtils = jwtUtils;
+	  this.customerDetailsService = customerDetailsService;
+	  
+  }
+  
+  public AuthTokenFilter() {}
 
   private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 

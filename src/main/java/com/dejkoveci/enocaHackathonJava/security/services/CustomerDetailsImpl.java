@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +28,8 @@ public class CustomerDetailsImpl implements UserDetails {
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
-
+  
+  @Autowired
   public CustomerDetailsImpl(Long id, String username, String email, String password,
       Collection<? extends GrantedAuthority> authorities) {
     this.id = id;

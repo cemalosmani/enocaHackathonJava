@@ -3,8 +3,9 @@ package com.dejkoveci.enocaHackathonJava.payload.request;
 import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequest {
+	
 	@NotBlank
-  private String email;
+	private String email;
 
 	@NotBlank
 	private String password;

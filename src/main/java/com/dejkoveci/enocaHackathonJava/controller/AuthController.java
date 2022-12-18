@@ -38,6 +38,7 @@ import com.dejkoveci.enocaHackathonJava.security.services.CustomerDetailsImpl;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+	
   @Autowired
   AuthenticationManager authenticationManager;
 
@@ -52,6 +53,8 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+  
+  //Sign In operation
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -73,9 +76,12 @@ public class AuthController {
                          userDetails.getEmail(), 
                          roles));
   }
+  
+  //Sign Up Operation
 
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	  
     if (iCustomerRepository.existsByUsername(signUpRequest.getUsername())) {
       return ResponseEntity
           .badRequest()
@@ -89,6 +95,7 @@ public class AuthController {
     }
 
     // Create new user's account
+    
     Customer customer = new Customer(signUpRequest.getUsername(), 
                signUpRequest.getEmail(),
                encoder.encode(signUpRequest.getPassword()));
@@ -122,6 +129,8 @@ public class AuthController {
         }
       });
     }
+    
+    //Setting role and saving customer to database
 
     customer.setRoles(roles);
     iCustomerRepository.save(customer);

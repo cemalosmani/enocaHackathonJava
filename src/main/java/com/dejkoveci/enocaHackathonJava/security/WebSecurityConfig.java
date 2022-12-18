@@ -25,6 +25,7 @@ import com.dejkoveci.enocaHackathonJava.security.services.CustomerDetailsService
 @EnableGlobalMethodSecurity(
         prePostEnabled = true)
 public class WebSecurityConfig {
+	
   @Autowired
   CustomerDetailsServiceImpl customerDetailsService;
 
@@ -55,6 +56,8 @@ public class WebSecurityConfig {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+  
+  //Configuring SecurityFilterChain
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

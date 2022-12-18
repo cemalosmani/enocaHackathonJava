@@ -9,6 +9,7 @@ import com.dejkoveci.enocaHackathonJava.model.Customer;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Long> {
+	
   Optional<Customer> findByEmail(String email);
 
   Boolean existsByUsername(String username);

@@ -11,5 +11,7 @@ import com.dejkoveci.enocaHackathonJava.model.Role;
 
 @Repository
 public interface IRoleRepository extends JpaRepository<Role, Long> {
+	
   Optional<Role> findByName(ERole name);
+  
 }

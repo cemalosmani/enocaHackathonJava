@@ -21,6 +21,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.dejkoveci.enocaHackathonJava.security.services.CustomerDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
+	
   @Autowired
   private JwtUtils jwtUtils;
 
@@ -32,9 +33,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
+	  
     try {
+    	
       String jwt = parseJwt(request);
       if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+    	  
         String email = jwtUtils.getUserNameFromJwtToken(jwt);
 
         UserDetails userDetails = customerDetailsService.loadUserByUsername(email);
@@ -46,7 +50,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        
       }
+      
     } catch (Exception e) {
       logger.error("Cannot set customer authentication: {}", e);
     }

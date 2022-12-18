@@ -26,10 +26,12 @@ public class Address {
  private Customer customer;
 
  public Address(String name, String city, String county, Customer customer) {
+	 
 	this.name = name;
 	this.city = city;
 	this.county = county;
 	this.customer = customer;
+	
  }
 	
  public Address() {}

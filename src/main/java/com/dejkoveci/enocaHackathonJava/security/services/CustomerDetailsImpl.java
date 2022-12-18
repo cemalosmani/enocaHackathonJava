@@ -14,6 +14,7 @@ import com.dejkoveci.enocaHackathonJava.model.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CustomerDetailsImpl implements UserDetails {
+	
   private static final long serialVersionUID = 1L;
 
   private Long id;
@@ -37,6 +38,7 @@ public class CustomerDetailsImpl implements UserDetails {
   }
 
   public static CustomerDetailsImpl build(Customer customer) {
+	  
     List<GrantedAuthority> authorities = customer.getRoles().stream()
         .map(role -> new SimpleGrantedAuthority(role.getName().name()))
         .collect(Collectors.toList());
@@ -94,11 +96,13 @@ public class CustomerDetailsImpl implements UserDetails {
 
   @Override
   public boolean equals(Object o) {
+	  
     if (this == o)
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
     CustomerDetailsImpl customerDetailsImpl = (CustomerDetailsImpl) o;
     return Objects.equals(id, customerDetailsImpl.id);
+    
   }
 }

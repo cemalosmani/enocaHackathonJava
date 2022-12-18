@@ -24,12 +24,16 @@ public class AddressController {
 	@Autowired
 	IAddressRepository iAddressRepository;
 	
+	//Get operation
+	
 	@GetMapping("/address")
 	public ResponseEntity<List<Address>> getAll(){
 		
 		return new ResponseEntity<>(iAddressRepository.findAll(), HttpStatus.OK); 
 		
 	}
+	
+	//Post operation
 
 	@PostMapping("/add")
 	public ResponseEntity<Address> addAddress(@RequestBody Address address) {
@@ -38,6 +42,8 @@ public class AddressController {
 		
 	}
 	
+	//Put operation
+	
 	@PutMapping("/{name}/update")
 	public ResponseEntity<Address> updateAddressByName(@PathVariable String name, @RequestBody Address address) {
 		
@@ -45,6 +51,8 @@ public class AddressController {
         return new ResponseEntity<>(iAddressRepository.save(newAddress), HttpStatus.OK);
 		
 	}
+	
+	//Delete operation
 	
 	@DeleteMapping("/{name}/delete")
 	public ResponseEntity<Address> deleteAddress(@PathVariable String name) {

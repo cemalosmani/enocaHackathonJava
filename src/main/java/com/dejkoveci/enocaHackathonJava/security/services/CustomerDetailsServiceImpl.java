@@ -13,12 +13,14 @@ import com.dejkoveci.enocaHackathonJava.repository.ICustomerRepository;
 
 @Service
 public class CustomerDetailsServiceImpl implements UserDetailsService {
+	
   @Autowired
   ICustomerRepository iCustomerRepository;
 
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	  
     Customer customer = iCustomerRepository.findByEmail(email)
         .orElseThrow(() -> new UsernameNotFoundException("Customer Not Found with email: " + email));
 

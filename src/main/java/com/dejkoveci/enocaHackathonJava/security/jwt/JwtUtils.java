@@ -3,6 +3,7 @@ package com.dejkoveci.enocaHackathonJava.security.jwt;
 import java.util.Date;
 
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,9 +41,12 @@ public class JwtUtils {
   }
 
   public boolean validateJwtToken(String authToken) {
+	  
     try {
+    	
       Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
       return true;
+      
     } catch (SignatureException e) {
       logger.error("Invalid JWT signature: {}", e.getMessage());
     } catch (MalformedJwtException e) {
